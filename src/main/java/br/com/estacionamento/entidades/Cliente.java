@@ -1,13 +1,13 @@
 package br.com.estacionamento.entidades;
 
-public class Pessoa {
+public class Cliente {
     private String nome;
     private String cpf;
     private String telefone;
     private int idade;
     private Endereco endereco;
 
-    public Pessoa(String nome, String cpf, String telefone, int idade, Endereco endereco) {
+    public Cliente(String nome, String cpf, String telefone, int idade, Endereco endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -15,7 +15,7 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    public Pessoa() {
+    public Cliente() {
     }
 
     public String getNome() {
@@ -60,7 +60,7 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa[ " +
+        return "Cliente[ " +
                 "nome: '" + nome + '\'' +
                 ", cpf: '" + cpf + '\'' +
                 ", telefone: '" + telefone + '\'' +
