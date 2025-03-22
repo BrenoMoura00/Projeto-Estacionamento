@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.mysql.cj.xdevapi.Client;
 
-public class ClienteRepositorio implements Dao<Client>{
+public class ClienteRepositorio implements IClienteRepositorio {
     private List<Client> list;
 
     public ClienteRepositorio() {
