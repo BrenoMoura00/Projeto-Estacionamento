@@ -4,7 +4,7 @@ package br.com.estacionamento.repositorios;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.xdevapi.Client;
+
 
 public class ClienteRepositorio implements IClienteRepositorio {
     private List<Client> list;
