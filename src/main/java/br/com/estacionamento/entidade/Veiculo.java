@@ -1,4 +1,4 @@
-package br.com.estacionamento.entidades;
+package br.com.estacionamento.entidade;
 
 public class Veiculo {
     private String modelo;
