@@ -19,30 +19,48 @@ public class ClienteRepositorio implements IClienteRepositorio {
 
     @Override
     public void adicionar(Cliente t) {
-
+        this.list.add(t);
     }
 
     @Override
     public Cliente atualizar(Cliente t) {
-        // TODO Auto-generated method stub
+        for (Cliente cliente1 : list){
+            if (cliente1.getCpf().equals( t.getCpf())){
+                cliente1.setNome(t.getNome());
+                cliente1.setIdade(t.getIdade());
+                cliente1.setTelefone(t.getTelefone());
+            } else{
+                return null;
+            }
+        }
         return null;
     }
 
     @Override
-    public Cliente buscar(int id) {
-        // TODO Auto-generated method stub
+    public Cliente buscar(String cpf) {
+        for (Cliente t : list){
+            if(t.getCpf().equals(cpf)){
+                return t;
+            }
+        }
         return null;
     }
 
     @Override
     public List listar() {
-        // TODO Auto-generated method stub
+        if(list.size() > 0){
+            return list;
+        }
         return null;
     }
 
     @Override
     public Cliente remove(Cliente t) {
-        // TODO Auto-generated method stub
+        for (Cliente cliente1 : list){
+            if (cliente1.getCpf().equals(t.getCpf())){
+                list.remove(cliente1);
+            }
+        }
         return null;
     }
 }

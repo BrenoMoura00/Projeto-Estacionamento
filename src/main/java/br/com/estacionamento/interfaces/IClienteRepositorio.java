@@ -12,7 +12,7 @@ public interface IClienteRepositorio{
     List<Cliente> listar();
 
     // Busca um objeto em especifico no banco de dados
-    Cliente buscar(int id);
+    Cliente buscar(String cpf);
     
     // Atualiza um item no banco de dados;
     Cliente atualizar(Cliente t);
