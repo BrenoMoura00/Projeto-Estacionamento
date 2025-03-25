@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-
     public Connection recuperarconexao() {
         try {
             return DriverManager
@@ -13,6 +12,5 @@ public class ConnectionFactory {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
