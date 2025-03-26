@@ -8,11 +8,10 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
-public class Cliente {
+public class Planos {
     private String nome;
-    private String cpf;
-    private String telefone;
-    private int idade;
-    private Endereco endereco;
-
+    private double valor;
+    private int qtnHoras;
+    private int qtnVeiculos;
+    private int qtnDias;
 }
