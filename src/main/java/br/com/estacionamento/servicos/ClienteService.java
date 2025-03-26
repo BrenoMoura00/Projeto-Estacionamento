@@ -18,7 +18,7 @@ public class ClienteService {
     };
 
     public List<Cliente> listar(){
-        return this.listar();
+        return this.clienteRepositorio.listar();
     };
 
     public Cliente buscar(String cpf){
