@@ -7,10 +7,18 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+
 public class ClienteService {
 
     private final ClienteRepositorio clienteRepositorio;
+
+    public ClienteService(ClienteRepositorio clienteRepositorio){
+        this.clienteRepositorio = clienteRepositorio;
+    }
+
+    public void adicionar(Cliente cliente){
+        this.clienteRepositorio.adicionar(cliente);
+    }
 
     public List<Cliente> listar(){
         return this.clienteRepositorio.listar();
