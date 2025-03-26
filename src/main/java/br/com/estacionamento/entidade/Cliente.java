@@ -1,14 +1,15 @@
 package br.com.estacionamento.entidade;
 
-import lombok.*;
 
 
+//BRENO NÃO ALTERA ESSA PORRA
 public class Cliente {
     private String nome;
     private String cpf;
     private String telefone;
     private int idade;
     private Endereco endereco;
+
 
     public Cliente(Builder builder){
         this.nome = builder.nome;
@@ -17,7 +18,7 @@ public class Cliente {
         this.idade = builder.idade;
         this.endereco = builder.endereco;
     }
-
+    //BRENO NÃO ALTERA ESSA PORRA
     public static class Builder{
         private String nome;
         private String cpf;
