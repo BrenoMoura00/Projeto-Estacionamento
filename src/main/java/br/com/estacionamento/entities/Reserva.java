@@ -2,7 +2,7 @@ package br.com.estacionamento.entities;
 
 import java.time.LocalDateTime;
 
-public class Reseva {
+public class Reserva {
     private int id;
     private Vaga vaga;
     private Veiculo veiculo;
@@ -10,10 +10,10 @@ public class Reseva {
     private LocalDateTime dataHoraSaida;
     private double valor;
 
-    public Reseva() {
+    public Reserva() {
     }
 
-    public Reseva(int id, Vaga vaga, double valor, Veiculo veiculo) {
+    public Reserva(int id, Vaga vaga, double valor, Veiculo veiculo) {
         this.id = id;
         this.vaga = vaga;
         this.valor = valor;

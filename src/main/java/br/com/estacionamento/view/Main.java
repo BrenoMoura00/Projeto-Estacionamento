@@ -1,5 +1,6 @@
-package br.com.estacionamento;
+package br.com.estacionamento.view;
 
+import br.com.estacionamento.ConnectionFactory;
 import br.com.estacionamento.Enum.UF;
 import br.com.estacionamento.entities.Cliente;
 import br.com.estacionamento.repositories.ClienteRepository;
