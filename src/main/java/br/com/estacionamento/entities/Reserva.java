@@ -13,13 +13,14 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(int id, Vaga vaga, double valor, Veiculo veiculo) {
+    public Reserva(int id, Vaga vaga, Veiculo veiculo, LocalDateTime dataHoraEntrada) {
         this.id = id;
         this.vaga = vaga;
-        this.valor = valor;
         this.veiculo = veiculo;
+        this.dataHoraEntrada = dataHoraEntrada;
     }
 
+    // Getters e Setters
     public int getId() {
         return id;
     }
