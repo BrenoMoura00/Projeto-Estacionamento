@@ -3,22 +3,25 @@ package br.com.estacionamento.servicos;
 
 import br.com.estacionamento.entidade.Cliente;
 import br.com.estacionamento.repositorio.ClienteRepositorio;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+
 public class ClienteService {
 
-    private ClienteRepositorio clienteRepositorio;
+    private final ClienteRepositorio clienteRepositorio;
+
     public ClienteService(ClienteRepositorio clienteRepositorio){
         this.clienteRepositorio = clienteRepositorio;
     }
 
     public void adicionar(Cliente cliente){
         this.clienteRepositorio.adicionar(cliente);
-    };
+    }
 
     public List<Cliente> listar(){
-        return this.listar();
+        return this.clienteRepositorio.listar();
     };
 
     public Cliente buscar(String cpf){

@@ -50,7 +50,7 @@ public class ClienteRepositorio implements IClienteRepositorio {
     @Override
     public List listar() {
         if(list.size() > 0){
-            return list;
+            return this.list;
         }
         return null;
     }

@@ -1,5 +1,8 @@
 package br.com.estacionamento.entidade;
 
+
+
+//BRENO NÃO ALTERA ESSA PORRA
 public class Cliente {
     private String nome;
     private String cpf;
@@ -7,65 +10,45 @@ public class Cliente {
     private int idade;
     private Endereco endereco;
 
-    public Cliente(String nome, String cpf, String telefone, int idade, Endereco endereco) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.idade = idade;
-        this.endereco = endereco;
-    }
 
-    public Cliente() {
+    public Cliente(Builder builder){
+        this.nome = builder.nome;
+        this.cpf = builder.cpf;
+        this.telefone = builder.telefone;
+        this.idade = builder.idade;
+        this.endereco = builder.endereco;
     }
+    //BRENO NÃO ALTERA ESSA PORRA
+    public static class Builder{
+        private String nome;
+        private String cpf;
+        private String telefone;
+        private int idade;
+        private Endereco endereco;
 
-    public String getNome() {
-        return nome;
-    }
+        public Builder nome(String nome){
+            this.nome = nome;
+            return this;
+        }
+        public Builder cpf(String cpf){
+            this.cpf = cpf;
+            return this;
+        }
+        public Builder telefone(String telefone){
+            this.telefone = telefone;
+            return this;
+        }
+        public Builder idade(int idade){
+            this.idade = idade;
+            return this;
+        }
+        public Builder endereco(Endereco endereco){
+            this.endereco = endereco;
+            return this;
+        }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    @Override
-    public String toString() {
-        return "Cliente[ " +
-                "nome: '" + nome + '\'' +
-                ", cpf: '" + cpf + '\'' +
-                ", telefone: '" + telefone + '\'' +
-                ", idade: " + idade +
-                ", endereco: " + endereco +
-                ']';
+        public Cliente build(){
+            return new Cliente(this);
+        }
     }
 }
