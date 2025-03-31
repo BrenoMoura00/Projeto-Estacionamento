@@ -2,7 +2,6 @@ package br.com.estacionamento;
 
 import br.com.estacionamento.Enum.UF;
 import br.com.estacionamento.entidade.Cliente;
-import br.com.estacionamento.entidade.Endereco;
 import br.com.estacionamento.repositorio.ClienteRepositorio;
 import br.com.estacionamento.servicos.ClienteService;
 

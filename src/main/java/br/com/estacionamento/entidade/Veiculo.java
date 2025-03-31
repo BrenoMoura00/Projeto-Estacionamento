@@ -1,17 +1,28 @@
 package br.com.estacionamento.entidade;
 
 public class Veiculo {
-    private String modelo;
     private String placa;
+    private String modelo;
     private String cor;
-
-    public Veiculo(String modelo, String placa, String cor) {
-        this.modelo = modelo;
-        this.placa = placa;
-        this.cor = cor;
-    }
+    private Cliente proprietario;
 
     public Veiculo() {
+    }
+
+    public Veiculo(String placa, String modelo, String cor, Cliente proprietario) {
+        this.placa = placa;
+        this.modelo = modelo;
+        this.cor = cor;
+        this.proprietario = proprietario;
+    }
+
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     public String getModelo() {
@@ -22,14 +33,6 @@ public class Veiculo {
         this.modelo = modelo;
     }
 
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
     public String getCor() {
         return cor;
     }
@@ -38,12 +41,11 @@ public class Veiculo {
         this.cor = cor;
     }
 
-    @Override
-    public String toString() {
-        return "Veiculo[ " +
-                "modelo: '" + modelo + '\'' +
-                ", placa: '" + placa + '\'' +
-                ", cor: '" + cor + '\'' +
-                ']';
+    public Cliente getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(Cliente proprietario) {
+        this.proprietario = proprietario;
     }
 }
