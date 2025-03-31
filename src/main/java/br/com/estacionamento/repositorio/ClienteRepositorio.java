@@ -9,8 +9,9 @@ import br.com.estacionamento.entidade.Cliente;
 import br.com.estacionamento.interfaces.IClienteRepositorio;
 
 public class ClienteRepositorio implements IClienteRepositorio {
-    private final ConnectionFactory connectionFactory;
     private List<Cliente> list;
+    private final ConnectionFactory connectionFactory;
+
 
     public ClienteRepositorio(ConnectionFactory connectionFactory) {
         this.connectionFactory = connectionFactory;

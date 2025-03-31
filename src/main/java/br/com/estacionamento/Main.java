@@ -4,6 +4,7 @@ import br.com.estacionamento.Enum.UF;
 import br.com.estacionamento.entidade.Cliente;
 import br.com.estacionamento.entidade.Endereco;
 import br.com.estacionamento.repositorio.ClienteRepositorio;
+import br.com.estacionamento.servicos.ClienteService;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,6 +15,13 @@ public class Main {
 
         Cliente cliente1 = new Cliente("jamerson", "1521737372","81672635",12,endereco1);
         Cliente cliente2 = new Cliente("caralhedeo","17685324","12836794",117,endereco2);
+
+        ClienteService service = new ClienteService(new ClienteRepositorio(new ConnectionFactory()));
+
+        service.adicionar(cliente1);
+        service.adicionar(cliente2);
+
+        service.listar();
 
 
 
