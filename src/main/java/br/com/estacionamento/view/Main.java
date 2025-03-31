@@ -551,7 +551,6 @@ public class Main {
     private static void realizarReserva() {
         System.out.println("\n=== Realizar Reserva ===");
 
-        // Listar veículos disponíveis
         List<Veiculo> veiculos = veiculoService.listarTodosVeiculos();
         if (veiculos.isEmpty()) {
             System.out.println("Nenhum veículo cadastrado!");
@@ -574,7 +573,6 @@ public class Main {
 
         Veiculo veiculo = veiculos.get(veiculoIndex);
 
-        // Criar vaga fictícia (em um sistema real, teríamos um repositório de vagas)
         System.out.print("\nNúmero da vaga: ");
         int numeroVaga = scanner.nextInt();
         scanner.nextLine();
