@@ -1,4 +1,4 @@
-package br.com.estacionamento.entidade;
+package br.com.estacionamento.entities;
 
 public class Funcionario extends Pessoa{
     private String cargo;

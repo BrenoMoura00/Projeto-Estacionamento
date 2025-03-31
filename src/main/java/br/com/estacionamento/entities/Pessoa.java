@@ -1,4 +1,4 @@
-package br.com.estacionamento.entidade;
+package br.com.estacionamento.entities;
 
 public abstract class Pessoa {
     protected String nome;

@@ -1,4 +1,4 @@
-package br.com.estacionamento.entidade;
+package br.com.estacionamento.entities;
 
 import java.time.LocalDateTime;
 
