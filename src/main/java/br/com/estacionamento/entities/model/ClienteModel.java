@@ -1,4 +1,4 @@
-package br.com.estacionamento.entities;
+package br.com.estacionamento.entities.model;
 
 import jakarta.persistence.*;
 

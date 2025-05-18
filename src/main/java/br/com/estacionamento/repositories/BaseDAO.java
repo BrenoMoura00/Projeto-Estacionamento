@@ -1,11 +1,11 @@
 package br.com.estacionamento.repositories;
 
-import br.com.estacionamento.interfaces.repositories.DAO;
+import br.com.estacionamento.interfaces.repositories.IDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-public class BaseDAO <T> implements DAO {
+public class BaseDAO <T> implements IDAO {
     private static final EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("org.hibernate.estacionamento.jpa");
 
