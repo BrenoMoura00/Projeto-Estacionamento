@@ -1,6 +1,7 @@
 package br.com.estacionamento.entities;
 
 
+import java.time.LocalDate;
 
 public class Cliente extends Pessoa {
     private boolean mensalista;
@@ -9,8 +10,8 @@ public class Cliente extends Pessoa {
         super();
     }
 
-    public Cliente(String nome, String cpf, String telefone, boolean mensalista) {
-        super(nome, cpf, telefone);
+    public Cliente(String nome, String cpf, String telefone, LocalDate dataNasc, boolean mensalista) {
+        super(nome, cpf, telefone, dataNasc);
         this.mensalista = mensalista;
     }
 

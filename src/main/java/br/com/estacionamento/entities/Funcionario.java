@@ -1,5 +1,7 @@
 package br.com.estacionamento.entities;
 
+import java.time.LocalDate;
+
 public class Funcionario extends Pessoa{
     private String cargo;
     private double salario;
@@ -8,8 +10,8 @@ public class Funcionario extends Pessoa{
         super();
     }
 
-    public Funcionario(String nome, String cpf, String telefone, String cargo, double salario) {
-        super(nome, cpf, telefone);
+    public Funcionario(String nome, String cpf, String telefone, LocalDate dataNasc, String cargo, double salario) {
+        super(nome, cpf, telefone, dataNasc);
         this.cargo = cargo;
         this.salario = salario;
     }

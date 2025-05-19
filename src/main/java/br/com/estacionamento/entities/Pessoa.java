@@ -1,23 +1,27 @@
 package br.com.estacionamento.entities;
 
+import java.time.LocalDate;
+
 public abstract class Pessoa {
     protected String nome;
     protected String cpf;
     protected String telefone;
+    protected LocalDate dataNasc;  // Campo adicionado
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf, String telefone) {
+    // Construtor atualizado
+    public Pessoa(String nome, String cpf, String telefone, LocalDate dataNasc) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
+        this.dataNasc = dataNasc;
     }
-
 
     public abstract String getTipo();
 
-    // Getters e Setters
+    // Getters e Setters (adicionado dataNasc)
     public String getNome() {
         return nome;
     }
@@ -40,5 +44,13 @@ public abstract class Pessoa {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public LocalDate getDataNasc() {
+        return dataNasc;
+    }
+
+    public void setDataNasc(LocalDate dataNasc) {
+        this.dataNasc = dataNasc;
     }
 }

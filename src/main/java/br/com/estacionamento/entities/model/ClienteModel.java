@@ -1,47 +1,56 @@
 package br.com.estacionamento.entities.model;
 
+import br.com.estacionamento.entities.Pessoa;
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
-public class ClienteModel {
+public class ClienteModel extends Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "data_cadastro", nullable = false, updatable = false)
+    private LocalDateTime dataCadastro = LocalDateTime.now();
 
-    @Column(name = "cpf")
-    private String cpf;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<VeiculoModel> veiculos = new ArrayList<>();
 
-    @Column(name = "telefone")
-    private String telefone;
-
-
-    public String getNome() {
-        return nome;
+    // Construtor
+    public ClienteModel() {
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public ClienteModel(String nome, String cpf, String telefone, LocalDate dataNasc) {
+        super(nome, cpf, telefone, dataNasc);
     }
 
-    public String getCpf() {
-        return cpf;
+    // Métodos de negócio
+    public void adicionarVeiculo(VeiculoModel veiculo) {
+        veiculos.add(veiculo);
+        veiculo.setCliente(this);
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    // Getters e Setters
+    public Integer getId() {
+        return id;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public List<VeiculoModel> getVeiculos() {
+        return veiculos;
     }
 
+    @Override
+    public String getTipo() {
+        return "CLIENTE";
+    }
 }

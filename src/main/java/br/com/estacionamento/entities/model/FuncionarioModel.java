@@ -3,6 +3,7 @@ package br.com.estacionamento.entities.model;
 import br.com.estacionamento.entities.Pessoa;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "funcionarios")

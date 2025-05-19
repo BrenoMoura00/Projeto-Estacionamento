@@ -12,21 +12,21 @@ public class VeiculoModel {
     @Column(name = "placa", length = 7, unique = true, nullable = false)
     private String placa;
 
-    @Column(name = "modelo", length = 50, nullable = false)
+    @Column(nullable = false, length = 50)
     private String modelo;
 
-    @Column(name = "cor", length = 30, nullable = false)
+    @Column(nullable = false, length = 30)
     private String cor;
 
-    @Column(name = "marca", length = 50, nullable = false)
+    @Column(nullable = false, length = 50)
     private String marca;
 
-    @Column(name = "ano", nullable = false)
+    @Column(nullable = false)
     private Integer ano;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
-    private ClienteModel proprietario;
+    private ClienteModel cliente;
 
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReservaModel> reservas = new ArrayList<>();
@@ -35,13 +35,19 @@ public class VeiculoModel {
     public VeiculoModel() {
     }
 
-    public VeiculoModel(String placa, String modelo, String cor, String marca, Integer ano, ClienteModel proprietario) {
+    public VeiculoModel(String placa, String modelo, String cor, String marca, Integer ano, ClienteModel cliente) {
         this.placa = placa;
         this.modelo = modelo;
         this.cor = cor;
         this.marca = marca;
         this.ano = ano;
-        this.proprietario = proprietario;
+        this.cliente = cliente;
+    }
+
+    // Métodos de negócio
+    public void adicionarReserva(ReservaModel reserva) {
+        reservas.add(reserva);
+        reserva.setVeiculo(this);
     }
 
     // Getters e Setters
@@ -85,21 +91,15 @@ public class VeiculoModel {
         this.ano = ano;
     }
 
-    public ClienteModel getProprietario() {
-        return proprietario;
+    public ClienteModel getCliente() {
+        return cliente;
     }
 
-    public void setProprietario(ClienteModel proprietario) {
-        this.proprietario = proprietario;
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 
     public List<ReservaModel> getReservas() {
         return reservas;
-    }
-
-    // Método utilitário
-    public void adicionarReserva(ReservaModel reserva) {
-        this.reservas.add(reserva);
-        reserva.setVeiculo(this);
     }
 }
