@@ -7,71 +7,78 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "funcionarios")
-@DiscriminatorValue("FUNCIONARIO") // Para herança com Pessoa
+@PrimaryKeyJoinColumn(name = "funcionario_id")
 public class FuncionarioModel extends Pessoa {
 
-    @Column(name = "pis", unique = true, length = 14)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "pis", unique = true, length = 14, nullable = false)
     private String pis;
 
     @Column(name = "cargo", nullable = false, length = 50)
     private String cargo;
 
-    @Column(name = "salario", precision = 10, scale = 2)
+    @Column(name = "salario", precision = 10, scale = 2, nullable = false)
     private BigDecimal salario;
 
-    @ManyToOne
+    @Column(name = "data_admissao", nullable = false)
+    private LocalDate dataAdmissao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id", nullable = false)
     private EnderecoModel endereco;
 
-    // Construtores
-    public FuncionarioModel() {
-        super();
-    }
+    public FuncionarioModel() {}
 
-    public FuncionarioModel(String nome, String cpf, LocalDate dataNasc, String pis,
-                            String cargo, BigDecimal salario, EnderecoModel endereco) {
-        super(nome, cpf, dataNasc);
+    public FuncionarioModel(String nome, String cpf, String telefone, LocalDate dataNasc,
+                            String pis, String cargo, BigDecimal salario,
+                            LocalDate dataAdmissao, EnderecoModel endereco) {
+        super(nome, cpf, telefone, dataNasc);
         this.pis = pis;
         this.cargo = cargo;
         this.salario = salario;
+        this.dataAdmissao = dataAdmissao;
         this.endereco = endereco;
     }
 
     // Getters e Setters
-    @Override
-    public String getTipo() {
-        return "FUNCIONARIO";
+    public Long getId() {
+        return id;
     }
-
     public String getPis() {
         return pis;
     }
-
     public void setPis(String pis) {
         this.pis = pis;
     }
-
     public String getCargo() {
         return cargo;
     }
-
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-
     public BigDecimal getSalario() {
         return salario;
     }
-
     public void setSalario(BigDecimal salario) {
         this.salario = salario;
     }
-
+    public LocalDate getDataAdmissao() {
+        return dataAdmissao;
+    }
+    public void setDataAdmissao(LocalDate dataAdmissao) {
+        this.dataAdmissao = dataAdmissao;
+    }
     public EnderecoModel getEndereco() {
         return endereco;
     }
-
     public void setEndereco(EnderecoModel endereco) {
         this.endereco = endereco;
+    }
+    @Override
+    public String getTipo() {
+        return "FUNCIONARIO";
     }
 }

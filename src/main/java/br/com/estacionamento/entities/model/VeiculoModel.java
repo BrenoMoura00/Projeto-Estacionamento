@@ -3,6 +3,7 @@ package br.com.estacionamento.entities.model;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "veiculos")
@@ -12,16 +13,16 @@ public class VeiculoModel {
     @Column(name = "placa", length = 7, unique = true, nullable = false)
     private String placa;
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "modelo", nullable = false, length = 50)
     private String modelo;
 
-    @Column(nullable = false, length = 30)
+    @Column(name = "cor", nullable = false, length = 30)
     private String cor;
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "marca", nullable = false, length = 50)
     private String marca;
 
-    @Column(nullable = false)
+    @Column(name = "ano", nullable = false)
     private Integer ano;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -101,5 +102,25 @@ public class VeiculoModel {
 
     public List<ReservaModel> getReservas() {
         return reservas;
+    }
+
+    // equals e hashCode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VeiculoModel that = (VeiculoModel) o;
+        return Objects.equals(placa, that.placa);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(placa);
+    }
+
+    // toString
+    @Override
+    public String toString() {
+        return marca + " " + modelo + " (" + placa + ")";
     }
 }

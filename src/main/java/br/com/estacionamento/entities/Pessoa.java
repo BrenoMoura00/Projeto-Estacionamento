@@ -6,12 +6,10 @@ public abstract class Pessoa {
     protected String nome;
     protected String cpf;
     protected String telefone;
-    protected LocalDate dataNasc;  // Campo adicionado
+    protected LocalDate dataNasc;
 
-    public Pessoa() {
-    }
+    public Pessoa() {}
 
-    // Construtor atualizado
     public Pessoa(String nome, String cpf, String telefone, LocalDate dataNasc) {
         this.nome = nome;
         this.cpf = cpf;
@@ -21,35 +19,28 @@ public abstract class Pessoa {
 
     public abstract String getTipo();
 
-    // Getters e Setters (adicionado dataNasc)
+    // Getters e Setters
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public String getCpf() {
         return cpf;
     }
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
     public String getTelefone() {
         return telefone;
     }
-
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
     public LocalDate getDataNasc() {
         return dataNasc;
     }
-
     public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }

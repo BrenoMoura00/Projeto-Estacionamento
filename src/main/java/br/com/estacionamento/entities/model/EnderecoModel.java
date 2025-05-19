@@ -1,29 +1,51 @@
 package br.com.estacionamento.entities.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
+import java.util.Objects;
 
-@Embeddable
+@Entity
+@Table(name = "enderecos")
 public class EnderecoModel {
-    @Column(name = "rua", length = 100, nullable = false)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "rua", nullable = false, length = 100)
     private String rua;
 
-    @Column(name = "bairro", length = 50, nullable = false)
+    @Column(name = "bairro", nullable = false, length = 50)
     private String bairro;
 
-    @Column(name = "cep", length = 9, nullable = false)
+    @Column(name = "cep", nullable = false, length = 9)
     private String cep;
 
-    @Column(name = "cidade", length = 50, nullable = false)
+    @Column(name = "cidade", nullable = false, length = 50)
     private String cidade;
 
     @Column(name = "complemento", length = 50)
     private String complemento;
 
-    @Column(name = "uf", length = 2, nullable = false)
+    @Column(name = "uf", nullable = false, length = 2)
     private String uf;
 
+    // Construtores
+    public EnderecoModel() {
+    }
+
+    public EnderecoModel(String rua, String bairro, String cep, String cidade, String uf) {
+        this.rua = rua;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.cidade = cidade;
+        this.uf = uf;
+    }
+
     // Getters e Setters
+    public Long getId() {
+        return id;
+    }
+
     public String getRua() {
         return rua;
     }
@@ -70,5 +92,25 @@ public class EnderecoModel {
 
     public void setUf(String uf) {
         this.uf = uf;
+    }
+
+    // equals e hashCode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EnderecoModel that = (EnderecoModel) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    // toString
+    @Override
+    public String toString() {
+        return rua + ", " + bairro + ", " + cidade + " - " + uf;
     }
 }
