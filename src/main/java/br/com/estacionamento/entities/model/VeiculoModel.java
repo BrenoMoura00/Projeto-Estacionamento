@@ -29,14 +29,21 @@ public class VeiculoModel {
     @JoinColumn(name = "cliente_id", nullable = false)
     private ClienteModel cliente;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "convenio_id")
+    private ConvenioModel convenio;
+
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReservaModel> reservas = new ArrayList<>();
 
-    // Construtores
+    @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
+    private List<TicketModel> tickets = new ArrayList<>();
+
     public VeiculoModel() {
     }
 
-    public VeiculoModel(String placa, String modelo, String cor, String marca, Integer ano, ClienteModel cliente) {
+    public VeiculoModel(String placa, String modelo, String cor, String marca,
+                        Integer ano, ClienteModel cliente) {
         this.placa = placa;
         this.modelo = modelo;
         this.cor = cor;
@@ -45,13 +52,16 @@ public class VeiculoModel {
         this.cliente = cliente;
     }
 
-    // Métodos de negócio
     public void adicionarReserva(ReservaModel reserva) {
         reservas.add(reserva);
         reserva.setVeiculo(this);
     }
 
-    // Getters e Setters
+    public void adicionarTicket(TicketModel ticket) {
+        tickets.add(ticket);
+        ticket.setVeiculo(this);
+    }
+
     public String getPlaca() {
         return placa;
     }
@@ -100,11 +110,22 @@ public class VeiculoModel {
         this.cliente = cliente;
     }
 
+    public ConvenioModel getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(ConvenioModel convenio) {
+        this.convenio = convenio;
+    }
+
     public List<ReservaModel> getReservas() {
         return reservas;
     }
 
-    // equals e hashCode
+    public List<TicketModel> getTickets() {
+        return tickets;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -118,7 +139,6 @@ public class VeiculoModel {
         return Objects.hash(placa);
     }
 
-    // toString
     @Override
     public String toString() {
         return marca + " " + modelo + " (" + placa + ")";

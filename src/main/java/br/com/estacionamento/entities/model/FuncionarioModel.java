@@ -43,7 +43,6 @@ public class FuncionarioModel extends Pessoa {
         this.endereco = endereco;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

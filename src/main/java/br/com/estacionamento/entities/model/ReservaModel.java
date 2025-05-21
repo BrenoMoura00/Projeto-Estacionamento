@@ -29,7 +29,6 @@ public class ReservaModel {
     @Column(name = "valor", precision = 10, scale = 2)
     private BigDecimal valor;
 
-    // Construtores
     public ReservaModel() {
     }
 
@@ -39,7 +38,6 @@ public class ReservaModel {
         this.dataHoraEntrada = dataHoraEntrada;
     }
 
-    // Getters e Setters
     public Integer getId() {
         return id;
     }

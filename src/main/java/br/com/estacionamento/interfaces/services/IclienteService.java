@@ -1,7 +1,5 @@
 package br.com.estacionamento.interfaces.services;
 
-import br.com.estacionamento.entities.Cliente;
-
 import java.util.List;
 
 public interface IclienteService {

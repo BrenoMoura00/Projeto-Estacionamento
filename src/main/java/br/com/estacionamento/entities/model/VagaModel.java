@@ -31,7 +31,6 @@ public class VagaModel {
     @OneToMany(mappedBy = "vaga", cascade = CascadeType.ALL)
     private List<ReservaModel> reservas = new ArrayList<>();
 
-    // Construtores
     public VagaModel() {
     }
 
@@ -42,7 +41,6 @@ public class VagaModel {
         this.estacionamento = estacionamento;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -91,7 +89,6 @@ public class VagaModel {
         return reservas;
     }
 
-    // Método de negócio
     public boolean reservar() {
         if (this.disponivel) {
             this.disponivel = false;

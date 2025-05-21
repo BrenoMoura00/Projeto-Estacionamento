@@ -1,45 +1,38 @@
 package br.com.estacionamento.repositories;
 
-
-import java.util.ArrayList;
+import br.com.estacionamento.entities.model.ClienteModel;
+import br.com.estacionamento.interfaces.repositories.IClienteRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import java.util.List;
 
-import br.com.estacionamento.entities.Cliente;
-import br.com.estacionamento.interfaces.repositories.IClienteRepository;
+public class ClienteRepository extends BaseDAO<ClienteModel> implements IClienteRepository {
 
-public class ClienteRepository implements IClienteRepository {
-    private List<Cliente> clientes = new ArrayList<>();
-
-    @Override
-    public void salvar(Cliente cliente) {
-        clientes.add(cliente);
+    public ClienteRepository() {
+        super(ClienteModel.class);
     }
 
     @Override
-    public void remover(String cpf) {
-        clientes.removeIf(c -> c.getCpf().equals(cpf));
+    public ClienteModel buscarPorCpf(String cpf) {
+        TypedQuery<ClienteModel> query = em.createQuery(
+                "SELECT c FROM ClienteModel c WHERE c.cpf = :cpf", ClienteModel.class);
+        query.setParameter("cpf", cpf);
+        return query.getResultStream().findFirst().orElse(null);
     }
 
     @Override
-    public void atualizar(Cliente cliente) {
-        for (int i = 0; i < clientes.size(); i++) {
-            if (clientes.get(i).getCpf().equals(cliente.getCpf())) {
-                clientes.set(i, cliente);
-                break;
-            }
-        }
+    public List<ClienteModel> listarComVeiculos() {
+        return em.createQuery(
+                "SELECT DISTINCT c FROM ClienteModel c LEFT JOIN FETCH c.veiculos",
+                ClienteModel.class).getResultList();
     }
 
     @Override
-    public List<Cliente> listarTodos() {
-        return new ArrayList<>(clientes);
-    }
-
-    @Override
-    public Cliente buscarPorCpf(String cpf) {
-        return clientes.stream()
-                .filter(c -> c.getCpf().equals(cpf))
-                .findFirst()
-                .orElse(null);
+    public boolean existePorCpf(String cpf) {
+        Long count = em.createQuery(
+                        "SELECT COUNT(c) FROM ClienteModel c WHERE c.cpf = :cpf", Long.class)
+                .setParameter("cpf", cpf)
+                .getSingleResult();
+        return count > 0;
     }
 }

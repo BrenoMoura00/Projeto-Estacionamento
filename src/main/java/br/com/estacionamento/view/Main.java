@@ -1,19 +1,5 @@
 package br.com.estacionamento.view;
 
-import br.com.estacionamento.entities.*;
-import br.com.estacionamento.repositories.ClienteRepository;
-import br.com.estacionamento.repositories.FuncionarioRepository;
-import br.com.estacionamento.repositories.ReservaRepository;
-import br.com.estacionamento.repositories.VeiculoRepository;
-import br.com.estacionamento.services.ClienteService;
-import br.com.estacionamento.services.FuncionarioService;
-import br.com.estacionamento.services.ReservaService;
-import br.com.estacionamento.services.VeiculoService;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Scanner;
-
 public class Main {
 //    private static final Scanner scanner = new Scanner(System.in);
 //    private static final ClienteRepository clienteRepository = new ClienteRepository();

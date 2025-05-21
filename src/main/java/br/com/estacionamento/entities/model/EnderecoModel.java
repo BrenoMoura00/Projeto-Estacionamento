@@ -29,7 +29,6 @@ public class EnderecoModel {
     @Column(name = "uf", nullable = false, length = 2)
     private String uf;
 
-    // Construtores
     public EnderecoModel() {
     }
 
@@ -41,7 +40,6 @@ public class EnderecoModel {
         this.uf = uf;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -94,7 +92,6 @@ public class EnderecoModel {
         this.uf = uf;
     }
 
-    // equals e hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,7 +105,6 @@ public class EnderecoModel {
         return Objects.hash(id);
     }
 
-    // toString
     @Override
     public String toString() {
         return rua + ", " + bairro + ", " + cidade + " - " + uf;

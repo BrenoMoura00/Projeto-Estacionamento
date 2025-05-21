@@ -1,13 +1,10 @@
 package br.com.estacionamento.interfaces.repositories;
 
+import br.com.estacionamento.entities.model.ClienteModel;
 import java.util.List;
 
-import br.com.estacionamento.entities.Cliente;
-
-public interface IClienteRepository {
-    void salvar(Cliente cliente);
-    void remover(String cpf);
-    void atualizar(Cliente cliente);
-    List<Cliente> listarTodos();
-    Cliente buscarPorCpf(String cpf);
+public interface IClienteRepository extends IDAO<ClienteModel> {
+    ClienteModel buscarPorCpf(String cpf);
+    List<ClienteModel> listarComVeiculos();
+    boolean existePorCpf(String cpf);
 }

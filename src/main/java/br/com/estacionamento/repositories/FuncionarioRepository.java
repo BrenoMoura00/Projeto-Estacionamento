@@ -1,44 +1,46 @@
 package br.com.estacionamento.repositories;
 
-import br.com.estacionamento.entities.Funcionario;
+import br.com.estacionamento.entities.model.FuncionarioModel;
 import br.com.estacionamento.interfaces.repositories.IFuncionarioRepository;
-
-import java.util.ArrayList;
+import jakarta.persistence.TypedQuery;
+import java.time.LocalDate;
 import java.util.List;
 
-public class FuncionarioRepository implements IFuncionarioRepository {
-    private List<Funcionario> funcionarios = new ArrayList<>();
+public class FuncionarioRepository extends BaseDAO<FuncionarioModel> implements IFuncionarioRepository {
 
-    @Override
-    public void salvar(Funcionario funcionario) {
-        funcionarios.add(funcionario);
+    public FuncionarioRepository() {
+        super(FuncionarioModel.class);
     }
 
     @Override
-    public void remover(String cpf) {
-        funcionarios.removeIf(f -> f.getCpf().equals(cpf));
+    public FuncionarioModel findByPis(String pis) {
+        TypedQuery<FuncionarioModel> query = em.createQuery(
+                "SELECT f FROM FuncionarioModel f WHERE f.pis = :pis", FuncionarioModel.class);
+        query.setParameter("pis", pis);
+        return query.getResultStream().findFirst().orElse(null);
     }
 
     @Override
-    public void atualizar(Funcionario funcionario) {
-        for (int i = 0; i < funcionarios.size(); i++) {
-            if (funcionarios.get(i).getCpf().equals(funcionario.getCpf())) {
-                funcionarios.set(i, funcionario);
-                break;
-            }
-        }
+    public List<FuncionarioModel> findByCargo(String cargo) {
+        return em.createQuery(
+                        "SELECT f FROM FuncionarioModel f WHERE f.cargo = :cargo", FuncionarioModel.class)
+                .setParameter("cargo", cargo)
+                .getResultList();
     }
 
     @Override
-    public List<Funcionario> listarTodos() {
-        return new ArrayList<>(funcionarios);
+    public List<FuncionarioModel> findByDataAdmissao(LocalDate dataAdmissao) {
+        return em.createQuery(
+                        "SELECT f FROM FuncionarioModel f WHERE f.dataAdmissao = :dataAdmissao", FuncionarioModel.class)
+                .setParameter("dataAdmissao", dataAdmissao)
+                .getResultList();
     }
 
     @Override
-    public Funcionario buscarPorCpf(String cpf) {
-        return funcionarios.stream()
-                .filter(f -> f.getCpf().equals(cpf))
-                .findFirst()
-                .orElse(null);
+    public List<FuncionarioModel> findByEnderecoId(Long enderecoId) {
+        return em.createQuery(
+                        "SELECT f FROM FuncionarioModel f WHERE f.endereco.id = :enderecoId", FuncionarioModel.class)
+                .setParameter("enderecoId", enderecoId)
+                .getResultList();
     }
 }

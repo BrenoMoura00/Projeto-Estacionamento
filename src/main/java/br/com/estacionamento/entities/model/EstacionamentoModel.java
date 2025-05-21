@@ -21,13 +21,13 @@ public class EstacionamentoModel {
     @Column(name = "responsavel", length = 100)
     private String responsavel;
 
-    @Embedded
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id", nullable = false)
     private EnderecoModel endereco;
 
     @OneToMany(mappedBy = "estacionamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VagaModel> vagas = new ArrayList<>();
 
-    // Construtores
     public EstacionamentoModel() {
     }
 
@@ -38,7 +38,6 @@ public class EstacionamentoModel {
         this.endereco = endereco;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -79,7 +78,6 @@ public class EstacionamentoModel {
         return vagas;
     }
 
-    // Métodos de negócio
     public void adicionarVaga(VagaModel vaga) {
         vagas.add(vaga);
         vaga.setEstacionamento(this);

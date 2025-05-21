@@ -1,7 +1,5 @@
 package br.com.estacionamento.interfaces.services;
 
-import br.com.estacionamento.entities.Veiculo;
-
 import java.util.List;
 
 public interface IVeiculoService {
