@@ -1,11 +1,13 @@
 package br.com.estacionamento.interfaces.services;
 
+import br.com.estacionamento.entities.model.ClienteModel;
+
 import java.util.List;
 
 public interface IclienteService {
-    void cadastrarCliente(Cliente cliente);
-    Cliente buscarClientePorCpf(String cpf);
-    void atualizarCliente(Cliente cliente);
+    void cadastrarCliente(ClienteModel cliente);
+    ClienteModel buscarClientePorCpf(String cpf);
+    void atualizarCliente(ClienteModel cliente);
     void removerCliente(String cpf);
-    List<Cliente> listarTodosClientes();
+    List<ClienteModel> listarTodosClientes();
 }

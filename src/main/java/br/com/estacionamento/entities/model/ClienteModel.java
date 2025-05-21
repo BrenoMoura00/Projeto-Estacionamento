@@ -1,6 +1,8 @@
 package br.com.estacionamento.entities.model;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,19 +24,19 @@ public class ClienteModel {
     @Column(name = "telefone", length = 255)
     private String telefone;
 
-    @Column(name = "data_cadastro", nullable = false, updatable = false)
-    private LocalDateTime dataCadastro = LocalDateTime.now();
+    @Column(name = "data_nasc", nullable = false, updatable = false)
+    private LocalDate dataNasc;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VeiculoModel> veiculos = new ArrayList<>();
 
     public ClienteModel() {}
 
-    public ClienteModel(String nome, String cpf, String telefone, LocalDateTime dataCadastro) {
+    public ClienteModel(String nome, String cpf, String telefone, LocalDate dataNasc) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.dataCadastro = dataCadastro;
+        this.dataNasc = dataNasc;
     }
 
     public void adicionarVeiculo(VeiculoModel veiculo) {
@@ -74,12 +76,12 @@ public class ClienteModel {
         this.telefone = telefone;
     }
 
-    public LocalDateTime getDataCadastro() {
-        return dataCadastro;
+    public LocalDate getDataNasc() {
+        return dataNasc;
     }
 
-    public void setDataCadastro(LocalDateTime dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setDataNasc(LocalDate dataNasc) {
+        this.dataNasc = dataNasc;
     }
 
     public List<VeiculoModel> getVeiculos() {
@@ -89,4 +91,5 @@ public class ClienteModel {
     public void setVeiculos(List<VeiculoModel> veiculos) {
         this.veiculos = veiculos;
     }
+
 }

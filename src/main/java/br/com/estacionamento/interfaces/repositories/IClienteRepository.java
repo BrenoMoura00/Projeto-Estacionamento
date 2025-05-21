@@ -7,4 +7,5 @@ public interface IClienteRepository extends IDAO<ClienteModel> {
     ClienteModel buscarPorCpf(String cpf);
     List<ClienteModel> listarComVeiculos();
     boolean existePorCpf(String cpf);
+    void deletarPorCpf(String cpf);
 }
