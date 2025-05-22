@@ -25,6 +25,7 @@ public abstract class BaseDAO<T> implements IDAO<T> {
             em.persist(objeto);
             em.getTransaction().commit();
         } catch (Exception e) {
+            e.getMessage();
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
