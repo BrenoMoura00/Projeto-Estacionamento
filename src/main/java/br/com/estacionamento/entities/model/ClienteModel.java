@@ -42,12 +42,15 @@ public class ClienteModel extends Pessoa{
     @ManyToOne
     @JoinColumn(name = "convenio_id")
     private ConvenioModel convenio;
+    
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReservaModel> reservas = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VeiculoModel> veiculos = new ArrayList<>();
 
-    public ClienteModel() {}
-
+   
     
     /*public ClienteModel(String nome, String cpf, String telefone, LocalDate data_cadastro) {
         this.nome = nome;
@@ -56,6 +59,43 @@ public class ClienteModel extends Pessoa{
         this.dataNasc = dataNasc;
     } */
 
+     public Endereco getEndereco() {
+        return endereco;
+    }
+
+
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+
+
+    public ClienteModel() {}
+
+    
+    
+    public List<ReservaModel> getReservas() {
+        return reservas;
+    }
+
+
+    public void setReservas(List<ReservaModel> reservas) {
+        this.reservas = reservas;
+    }
+    
     public List<TicketModel> getTicket() {
         return ticket;
     }
@@ -77,11 +117,11 @@ public class ClienteModel extends Pessoa{
         veiculo.setCliente(this);
     }
 
-    public boolean isAtivo() {
+    public boolean isativo() {
         return ativo;
     }
 
-    public void setAtivo(boolean ativo) {
+    public void setativo(boolean ativo) {
         this.ativo = ativo;
     }
 

@@ -18,7 +18,7 @@ public class ReservaModel {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
-    private VeiculoModel veiculo;
+    private ClienteModel cliente;
 
     @Column(name = "data_hora_entrada", nullable = false)
     private LocalDateTime dataHoraEntrada;
@@ -32,11 +32,21 @@ public class ReservaModel {
     public ReservaModel() {
     }
 
-    public ReservaModel(VagaModel vaga, VeiculoModel veiculo, LocalDateTime dataHoraEntrada) {
-        this.vaga = vaga;
-        this.veiculo = veiculo;
-        this.dataHoraEntrada = dataHoraEntrada;
+    // public ReservaModel(VagaModel vaga, VeiculoModel veiculo, LocalDateTime dataHoraEntrada) {
+    //     this.vaga = vaga;
+    //     this.veiculo = veiculo;
+    //     this.dataHoraEntrada = dataHoraEntrada;
+    // }
+
+    
+    public ClienteModel getCliente() {
+        return cliente;
     }
+
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
+    }
+
 
     public Integer getId() {
         return id;
@@ -50,12 +60,12 @@ public class ReservaModel {
         this.vaga = vaga;
     }
 
-    public VeiculoModel getVeiculo() {
-        return veiculo;
+    public ClienteModel getcliente() {
+        return cliente;
     }
 
-    public void setVeiculo(VeiculoModel veiculo) {
-        this.veiculo = veiculo;
+    public void setcliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 
     public LocalDateTime getDataHoraEntrada() {

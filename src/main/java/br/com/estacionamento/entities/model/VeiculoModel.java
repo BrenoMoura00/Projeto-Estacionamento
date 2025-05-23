@@ -36,9 +36,6 @@ public class VeiculoModel {
     // @JoinColumn(name = "convenio_id")
     // private ConvenioModel convenio;
 
-    @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReservaModel> reservas = new ArrayList<>();
-
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
     private List<TicketModel> tickets = new ArrayList<>();
 
@@ -63,10 +60,10 @@ public class VeiculoModel {
         this.id = id;
     }
 
-    public void adicionarReserva(ReservaModel reserva) {
-        reservas.add(reserva);
-        reserva.setVeiculo(this);
-    }
+    // public void adicionarReserva(ReservaModel reserva) {
+    //     reservas.add(reserva);
+    //     reserva.setVeiculo(this);
+    // }
 
     public void adicionarTicket(TicketModel ticket) {
         tickets.add(ticket);
@@ -129,9 +126,9 @@ public class VeiculoModel {
     //     this.convenio = convenio;
     // }
 
-    public List<ReservaModel> getReservas() {
-        return reservas;
-    }
+    // public List<ReservaModel> getReservas() {
+    //     return reservas;
+    // }
 
     public List<TicketModel> getTickets() {
         return tickets;

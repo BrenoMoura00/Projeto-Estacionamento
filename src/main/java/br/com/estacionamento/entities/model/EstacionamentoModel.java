@@ -29,11 +29,16 @@ public class EstacionamentoModel {
     @JoinColumn(name = "responsavel_id")
     private ResponsavelModel responsavel;
 
+    @OneToMany(mappedBy = "estacionamento",cascade = CascadeType.ALL, orphanRemoval = true )
+    private List<FuncionarioModel> funcionario = new ArrayList<>();
+
     @OneToMany(mappedBy = "estacionamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VagaModel> vagas = new ArrayList<>();
 
-    public EstacionamentoModel() {
+    public void setVagas(List<VagaModel> vagas) {
+        this.vagas = vagas;
     }
+
 
     // public EstacionamentoModel(String cnpj, ResponsavelModel responsavel, Endereco endereco) {
     //     // this.nome = nome;
@@ -42,6 +47,20 @@ public class EstacionamentoModel {
     //     this.endereco = endereco;
     // }
 
+     public ResponsavelModel getResponsavel() {
+        return responsavel;
+    }
+
+    public EstacionamentoModel() {
+    }
+
+    public List<FuncionarioModel> getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(List<FuncionarioModel> funcionario) {
+        this.funcionario = funcionario;
+    }
     
     public void setResponsavel(ResponsavelModel responsavel) {
         this.responsavel = responsavel;

@@ -26,12 +26,24 @@ public class FuncionarioModel extends Pessoa {
     @Column(name = "data_admissao", nullable = false)
     private LocalDate dataAdmissao;
 
+    @ManyToOne
+    @JoinColumn(name = "estacionamento_id")
+    private EstacionamentoModel estacionamento;
+
     @Embedded
     private Endereco endereco;
 
     // @ManyToOne(fetch = FetchType.LAZY)
     // @JoinColumn(name = "endereco_id", nullable = false)
     // private EnderecoModel endereco;
+
+    public EstacionamentoModel getEstacionamento() {
+        return estacionamento;
+    }
+
+    public void setEstacionamento(EstacionamentoModel estacionamento) {
+        this.estacionamento = estacionamento;
+    }
 
     public FuncionarioModel() {}
 
