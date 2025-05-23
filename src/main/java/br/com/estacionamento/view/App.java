@@ -9,8 +9,12 @@ public class App {
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("estacionamento");
         EntityManager em =  entityManagerFactory.createEntityManager();
-        // this.emf = Persistence.createEntityManagerFactory("estacionamento");
-        // this.em = emf.createEntityManager();
-        System.out.println("Conexão bem sucessidada");
+        try{
+            em.getTransaction().begin();
+            em.getTransaction().commit();
+            System.out.println("TESTE DE TRANSAÇÃO BEM SUCEDIDA");
+        }catch(Exception e){
+            e.getMessage();
+        }
     }
 }
