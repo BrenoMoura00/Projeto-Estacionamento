@@ -1,6 +1,8 @@
 package br.com.estacionamento.repositories;
 
 import br.com.estacionamento.entities.model.ClienteModel;
+import br.com.estacionamento.entities.model.TicketModel;
+import br.com.estacionamento.entities.model.VeiculoModel;
 import br.com.estacionamento.interfaces.repositories.IClienteRepository;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
@@ -21,12 +23,11 @@ public class ClienteRepository extends BaseDAO<ClienteModel> implements ICliente
         return query.getResultStream().findFirst().orElse(null);
     }
 
-    @Override
-    public List<ClienteModel> listarComVeiculos() {
-        return em.createQuery(
-                "SELECT DISTINCT c FROM ClienteModel c LEFT JOIN FETCH c.veiculos",
-                ClienteModel.class).getResultList();
-    }
+    // @Override
+    // public List<VeiculoModel> () {
+    //     return null
+    // }
+    
 
     @Override
     public boolean existePorCpf(String cpf) {
@@ -35,6 +36,18 @@ public class ClienteRepository extends BaseDAO<ClienteModel> implements ICliente
                 .setParameter("cpf", cpf)
                 .getSingleResult();
         return count > 0;
+    }
+
+    @Override
+    public List<TicketModel> listarTicketsPorCpf() {
+        List<TicketModel> listTickets = em.createQuery()
+        return null;
+    }
+
+    @Override
+    public List<VeiculoModel> listarVeiculosPorCpf() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override

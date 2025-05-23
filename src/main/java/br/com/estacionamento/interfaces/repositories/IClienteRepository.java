@@ -9,8 +9,8 @@ import java.util.List;
 public interface IClienteRepository extends IDAO<ClienteModel> {
     
     ClienteModel buscarPorCpf(String cpf);
-    List<VeiculoModel> listarVeiculos();
-    List<TicketModel> listarTickets();
+    List<VeiculoModel> listarVeiculosPorCpf();
+    List<TicketModel> listarTicketsPorCpf();
     boolean existePorCpf(String cpf);
     void deletarPorCpf(String cpf);
     
