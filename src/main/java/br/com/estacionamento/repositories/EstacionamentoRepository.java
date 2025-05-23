@@ -2,7 +2,6 @@ package br.com.estacionamento.repositories;
 
 import br.com.estacionamento.entities.model.EstacionamentoModel;
 import br.com.estacionamento.interfaces.repositories.IEstacionamentoRepository;
-import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 public class EstacionamentoRepository extends BaseDAO<EstacionamentoModel> implements IEstacionamentoRepository {
