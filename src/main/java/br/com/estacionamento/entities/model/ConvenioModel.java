@@ -28,40 +28,26 @@ public class ConvenioModel {
 
     @Column(name = "qnt_vagas", nullable = false)
     private Integer qntVagas;
-
-    @Column(name = "qnt_veiculos", nullable = false)
-    private Integer qntVeiculos;
-
+   
     @Column(name = "ativo", nullable = false)
     private Boolean ativo = true;
 
     @OneToMany(mappedBy = "convenio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<VeiculoModel> veiculos = new ArrayList<>();
+    private List<ClienteModel> cliente = new ArrayList<>();
 
     // Construtores
     public ConvenioModel() {
     }
 
-    public ConvenioModel(String nome, String nomeEmpresa, BigDecimal valor,
-                         Integer qntHoras, Integer qntVagas, Integer qntVeiculos) {
-        this.nome = nome;
-        this.nomeEmpresa = nomeEmpresa;
-        this.valor = valor;
-        this.qntHoras = qntHoras;
-        this.qntVagas = qntVagas;
-        this.qntVeiculos = qntVeiculos;
-    }
-
-    public void adicionarVeiculo(VeiculoModel veiculo) {
-        if (veiculos.size() < qntVeiculos) {
-            if (!veiculos.contains(veiculo)) {
-                veiculos.add(veiculo);
-                veiculo.setConvenio(this);
-            }
-        } else {
-            throw new IllegalStateException("Limite de veículos do convênio atingido");
-        }
-    }
+    // public ConvenioModel(String nome, String nomeEmpresa, BigDecimal valor,
+    //                      Integer qntHoras, Integer qntVagas, Integer qntcliente) {
+    //     this.nome = nome;
+    //     this.nomeEmpresa = nomeEmpresa;
+    //     this.valor = valor;
+    //     this.qntHoras = qntHoras;
+    //     this.qntVagas = qntVagas;
+    //     this.qntcliente = qntcliente;
+    // }
 
     public void desativar() {
         this.ativo = false;
@@ -119,13 +105,13 @@ public class ConvenioModel {
         this.qntVagas = qntVagas;
     }
 
-    public Integer getQntVeiculos() {
-        return qntVeiculos;
-    }
+    // public Integer getQntcliente() {
+    //     return qntcliente;
+    // }
 
-    public void setQntVeiculos(Integer qntVeiculos) {
-        this.qntVeiculos = qntVeiculos;
-    }
+    // public void setQntcliente(Integer qntcliente) {
+    //     this.qntcliente = qntcliente;
+    // }
 
     public Boolean getAtivo() {
         return ativo;
@@ -135,11 +121,11 @@ public class ConvenioModel {
         this.ativo = ativo;
     }
 
-    public List<VeiculoModel> getVeiculos() {
-        return veiculos;
-    }
+    // public List<VeiculoModel> getcliente() {
+    //     return cliente;
+    // }
 
-    public void setVeiculos(List<VeiculoModel> veiculos) {
-        this.veiculos = veiculos;
-    }
+    // public void setcliente(List<VeiculoModel> cliente) {
+    //     this.cliente = cliente;
+    // }
 }

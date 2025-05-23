@@ -5,25 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "estacionamentos")
+@Table(name = "estacionamento")
 public class EstacionamentoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", length = 100, nullable = false)
-    private String nome;
+    @Column(name = "cnpf", length = 15)
+    private String cnpj;
 
-    @Column(name = "telefone", length = 15)
-    private String telefone;
+    @Embedded
+    private Endereco endereco;
+    
+    // @Column(name = "responsavel", length = 100)
+    // private String responsavel;
 
-    @Column(name = "responsavel", length = 100)
-    private String responsavel;
+    // @ManyToOne(cascade = CascadeType.ALL)
+    // @JoinColumn(name = "endereco_id", nullable = false)
+    // private EnderecoModel endereco;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "endereco_id", nullable = false)
-    private EnderecoModel endereco;
+    @ManyToOne
+    @JoinColumn(name = "responsavel_id")
+    private ResponsavelModel responsavel;
 
     @OneToMany(mappedBy = "estacionamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VagaModel> vagas = new ArrayList<>();
@@ -31,46 +35,54 @@ public class EstacionamentoModel {
     public EstacionamentoModel() {
     }
 
-    public EstacionamentoModel(String nome, String telefone, String responsavel, EnderecoModel endereco) {
-        this.nome = nome;
-        this.telefone = telefone;
+    // public EstacionamentoModel(String cnpj, ResponsavelModel responsavel, Endereco endereco) {
+    //     // this.nome = nome;
+    //     this.cnpj = cnpj;
+    //     this.responsavel = responsavel;
+    //     this.endereco = endereco;
+    // }
+
+    
+    public void setResponsavel(ResponsavelModel responsavel) {
         this.responsavel = responsavel;
-        this.endereco = endereco;
+    }
+    public ResponsavelModel geResponsavel(){
+        return responsavel;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    // public String getNome() {
+    //     return nome;
+    // }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    // public void setNome(String nome) {
+    //     this.nome = nome;
+    // }
 
     public String getTelefone() {
-        return telefone;
+        return cnpj;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setTelefone(String cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public String getResponsavel() {
-        return responsavel;
-    }
+    // public String getResponsavel() {
+    //     return responsavel;
+    // }
 
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
-    }
+    // public void setResponsavel(String responsavel) {
+    //     this.responsavel = responsavel;
+    // }
 
-    public EnderecoModel getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(EnderecoModel endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 

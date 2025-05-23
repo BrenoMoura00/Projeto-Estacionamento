@@ -17,7 +17,7 @@ public class ReservaModel {
     private VagaModel vaga;
 
     @ManyToOne
-    @JoinColumn(name = "veiculo_id", nullable = false)
+    @JoinColumn(name = "cliente_id", nullable = false)
     private VeiculoModel veiculo;
 
     @Column(name = "data_hora_entrada", nullable = false)

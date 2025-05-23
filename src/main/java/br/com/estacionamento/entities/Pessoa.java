@@ -2,15 +2,30 @@ package br.com.estacionamento.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Pessoa {
-    protected String nome;
-    protected String cpf;
-    protected String telefone;
-    protected LocalDate dataNasc;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nome;
+
+    private String cpf;
+
+    private String telefone;
+
+    private LocalDate dataNasc;
 
     public Pessoa() {}
 
-    public Pessoa(String nome, String cpf, String telefone, LocalDate dataNasc) {
+    public Pessoa(Long id,String nome, String cpf, String telefone, LocalDate dataNasc) {
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -20,6 +35,13 @@ public abstract class Pessoa {
     public abstract String getTipo();
 
     // Getters e Setters
+      public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getNome() {
         return nome;
     }

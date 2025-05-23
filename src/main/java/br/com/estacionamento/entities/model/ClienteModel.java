@@ -3,40 +3,73 @@ package br.com.estacionamento.entities.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+// import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.estacionamento.entities.Pessoa;
+
 @Entity
 @Table(name = "clientes")
-public class ClienteModel {
+public class ClienteModel extends Pessoa{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // private Integer id;
 
-    @Column(name = "cpf", nullable = false, unique = true, length = 255)
-    private String cpf;
+    // @Column(name = "cpf", nullable = false, unique = true, length = 255)
+    // private String cpf;
 
-    @Column(name = "nome", nullable = false, length = 255)
-    private String nome;
+    // @Column(name = "nome", nullable = false, length = 255)
+    // private String nome;
 
-    @Column(name = "telefone", length = 255)
-    private String telefone;
+    // @Column(name = "telefone", length = 255)
+    // private String telefone;
 
-    @Column(name = "data_nasc", nullable = false, updatable = false)
-    private LocalDate dataNasc;
+    // @Column(name = "data_nasc", nullable = false, updatable = false)
+    // private LocalDate dataNasc;
+    
+    @Embedded
+    private Endereco endereco;
+    
+    private boolean ativo; 
+
+    private LocalDate data_cadastro;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<TicketModel> ticket;
+
+    @ManyToOne
+    @JoinColumn(name = "convenio_id")
+    private ConvenioModel convenio;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VeiculoModel> veiculos = new ArrayList<>();
 
     public ClienteModel() {}
 
-    public ClienteModel(String nome, String cpf, String telefone, LocalDate dataNasc) {
+    
+    /*public ClienteModel(String nome, String cpf, String telefone, LocalDate data_cadastro) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
         this.dataNasc = dataNasc;
+    } */
+
+    public List<TicketModel> getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(List<TicketModel> ticket) {
+        this.ticket = ticket;
+    }
+
+    public ConvenioModel getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(ConvenioModel convenio) {
+        this.convenio = convenio;
     }
 
     public void adicionarVeiculo(VeiculoModel veiculo) {
@@ -44,6 +77,23 @@ public class ClienteModel {
         veiculo.setCliente(this);
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public LocalDate getData_cadastro() {
+        return data_cadastro;
+    }
+
+    public void setData_cadastro(LocalDate data_cadastro) {
+        this.data_cadastro = data_cadastro;
+    }
+
+    /* 
     public Integer getId() {
         return id;
     }
@@ -83,6 +133,7 @@ public class ClienteModel {
     public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
+    */
 
     public List<VeiculoModel> getVeiculos() {
         return veiculos;
@@ -90,6 +141,11 @@ public class ClienteModel {
 
     public void setVeiculos(List<VeiculoModel> veiculos) {
         this.veiculos = veiculos;
+    }
+
+    @Override
+    public String getTipo(){
+        return "CLIENTE";
     }
 
 }

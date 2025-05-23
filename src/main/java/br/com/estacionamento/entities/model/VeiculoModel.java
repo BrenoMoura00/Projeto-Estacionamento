@@ -10,6 +10,9 @@ import java.util.Objects;
 public class VeiculoModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "placa", length = 7, unique = true, nullable = false)
     private String placa;
 
@@ -25,13 +28,13 @@ public class VeiculoModel {
     @Column(name = "ano", nullable = false)
     private Integer ano;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private ClienteModel cliente;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "convenio_id")
-    private ConvenioModel convenio;
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "convenio_id")
+    // private ConvenioModel convenio;
 
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReservaModel> reservas = new ArrayList<>();
@@ -42,14 +45,22 @@ public class VeiculoModel {
     public VeiculoModel() {
     }
 
-    public VeiculoModel(String placa, String modelo, String cor, String marca,
-                        Integer ano, ClienteModel cliente) {
-        this.placa = placa;
-        this.modelo = modelo;
-        this.cor = cor;
-        this.marca = marca;
-        this.ano = ano;
-        this.cliente = cliente;
+    // public VeiculoModel(String placa, String modelo, String cor, String marca,
+    //                     Integer ano, ClienteModel cliente) {
+    //     this.placa = placa;
+    //     this.modelo = modelo;
+    //     this.cor = cor;
+    //     this.marca = marca;
+    //     this.ano = ano;
+    //     this.cliente = cliente;
+    // }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void adicionarReserva(ReservaModel reserva) {
@@ -110,13 +121,13 @@ public class VeiculoModel {
         this.cliente = cliente;
     }
 
-    public ConvenioModel getConvenio() {
-        return convenio;
-    }
+    // public ConvenioModel getConvenio() {
+    //     return convenio;
+    // }
 
-    public void setConvenio(ConvenioModel convenio) {
-        this.convenio = convenio;
-    }
+    // public void setConvenio(ConvenioModel convenio) {
+    //     this.convenio = convenio;
+    // }
 
     public List<ReservaModel> getReservas() {
         return reservas;

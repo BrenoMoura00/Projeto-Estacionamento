@@ -1,7 +1,7 @@
 package br.com.estacionamento.entities.model;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tickets")
@@ -11,11 +11,21 @@ public class TicketModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "valor", nullable = false, precision = 10, scale = 2)
-    private BigDecimal valor;
+    // @Column(name = "valor", nullable = false, precision = 10, scale = 2)
+    // private BigDecimal valor;
 
     @Column(name = "tempo_permanencia", nullable = false)
     private Integer tempoPermanencia;
+
+    @Column
+    private LocalDate hora_saida;
+
+    @OneToOne(mappedBy = "ticket")
+    private PagamentoModel pagamento;
+    
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private ClienteModel cliente;
 
     @ManyToOne
     @JoinColumn(name = "veiculo_id", nullable = false)
@@ -28,23 +38,31 @@ public class TicketModel {
     public TicketModel() {
     }
 
-    public TicketModel(BigDecimal valor, Integer tempoPermanencia, VeiculoModel veiculo) {
-        this.valor = valor;
-        this.tempoPermanencia = tempoPermanencia;
-        this.veiculo = veiculo;
+    public LocalDate getHora_saida() {
+        return hora_saida;
     }
+
+    public void setHora_saida(LocalDate hora_saida) {
+        this.hora_saida = hora_saida;
+    }
+
+    // public TicketModel(BigDecimal valor, Integer tempoPermanencia, VeiculoModel veiculo) {
+    //     this.valor = valor;
+    //     this.tempoPermanencia = tempoPermanencia;
+    //     this.veiculo = veiculo;
+    // }
 
     public Long getId() {
         return id;
     }
 
-    public BigDecimal getValor() {
-        return valor;
-    }
+    // public BigDecimal getValor() {
+    //     return valor;
+    // }
 
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
+    // public void setValor(BigDecimal valor) {
+    //     this.valor = valor;
+    // }
 
     public Integer getTempoPermanencia() {
         return tempoPermanencia;

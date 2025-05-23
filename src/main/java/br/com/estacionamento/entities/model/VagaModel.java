@@ -31,8 +31,7 @@ public class VagaModel {
     @OneToMany(mappedBy = "vaga", cascade = CascadeType.ALL)
     private List<ReservaModel> reservas = new ArrayList<>();
 
-    public VagaModel() {
-    }
+    public VagaModel() {}
 
     public VagaModel(Integer numero, String setor, String andar, EstacionamentoModel estacionamento) {
         this.numero = numero;

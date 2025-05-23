@@ -7,12 +7,12 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "funcionarios")
-@PrimaryKeyJoinColumn(name = "funcionario_id")
+// @PrimaryKeyJoinColumn(name = "funcionario_id")
 public class FuncionarioModel extends Pessoa {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // private Long id;
 
     @Column(name = "pis", unique = true, length = 14, nullable = false)
     private String pis;
@@ -26,26 +26,29 @@ public class FuncionarioModel extends Pessoa {
     @Column(name = "data_admissao", nullable = false)
     private LocalDate dataAdmissao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "endereco_id", nullable = false)
-    private EnderecoModel endereco;
+    @Embedded
+    private Endereco endereco;
+
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "endereco_id", nullable = false)
+    // private EnderecoModel endereco;
 
     public FuncionarioModel() {}
 
-    public FuncionarioModel(String nome, String cpf, String telefone, LocalDate dataNasc,
-                            String pis, String cargo, BigDecimal salario,
-                            LocalDate dataAdmissao, EnderecoModel endereco) {
-        super(nome, cpf, telefone, dataNasc);
-        this.pis = pis;
-        this.cargo = cargo;
-        this.salario = salario;
-        this.dataAdmissao = dataAdmissao;
-        this.endereco = endereco;
-    }
+    // public FuncionarioModel(Long id,String nome, String cpf, String telefone, LocalDate dataNasc,
+    //                         String pis, String cargo, BigDecimal salario,
+    //                         LocalDate dataAdmissao ,Endereco endereco) {
+    //     super(id, nome, cpf, telefone, dataNasc);
+    //     this.pis = pis;
+    //     this.cargo = cargo;
+    //     this.salario = salario;
+    //     this.dataAdmissao = dataAdmissao;
+    //     this.endereco = endereco;
+    // }
 
-    public Long getId() {
-        return id;
-    }
+    // public Long getId() {
+    //     return id;
+    // }
     public String getPis() {
         return pis;
     }
@@ -70,10 +73,10 @@ public class FuncionarioModel extends Pessoa {
     public void setDataAdmissao(LocalDate dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
-    public EnderecoModel getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
-    public void setEndereco(EnderecoModel endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
     @Override
