@@ -149,6 +149,13 @@ public class VeiculoModel {
 
     @Override
     public String toString() {
-        return marca + " " + modelo + " (" + placa + ")";
+        return "VeiculoModel [id=" + id + ", placa=" + placa + ", modelo=" + modelo + ", cor=" + cor + ", marca="
+                + marca + ", ano=" + ano + "]";
     }
+
+    // @Override
+    // public String toString() {
+    //     return marca + " " + modelo + " (" + placa + ")";
+    // }
+    
 }
