@@ -14,7 +14,7 @@ public class ConvenioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome_convenio", length = 100, nullable = false)
+    @Column(name = "nome_convenio", length = 100, nullable = false,unique = true)
     private String nome;
 
     @Column(name = "nome_empresa", length = 100, nullable = false)
@@ -121,6 +121,12 @@ public class ConvenioModel {
         this.ativo = ativo;
     }
 
+    @Override
+    public String toString() {
+        return "ConvenioModel [id=" + id + ", nome=" + nome + ", nomeEmpresa=" + nomeEmpresa + ", valor=" + valor
+                + ", qntHoras=" + qntHoras + ", qntVagas=" + qntVagas + ", ativo=" + ativo + "]";
+    }
+
     // public List<VeiculoModel> getcliente() {
     //     return cliente;
     // }
@@ -128,4 +134,5 @@ public class ConvenioModel {
     // public void setcliente(List<VeiculoModel> cliente) {
     //     this.cliente = cliente;
     // }
+    
 }

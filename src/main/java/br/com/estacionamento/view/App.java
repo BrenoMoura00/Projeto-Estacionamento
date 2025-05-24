@@ -1,9 +1,13 @@
 package br.com.estacionamento.view;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import br.com.estacionamento.entities.model.ClienteModel;
+import br.com.estacionamento.entities.model.ConvenioModel;
 import br.com.estacionamento.entities.model.VeiculoModel;
 import br.com.estacionamento.repositories.ClienteRepository;
+import br.com.estacionamento.repositories.ConvenioRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -21,12 +25,23 @@ public class App {
             e.getMessage();
         }
 
-        ClienteRepository c = new ClienteRepository();
-        List<VeiculoModel> vlist = c.listarVeiculosPorCpf("14785458445");
+        // ConvenioRepository c = new ConvenioRepository();
+        // ConvenioModel model = new ConvenioModel();
+        // model.setAtivo(true);
+        // model.setNome("top");
+        // model.setNomeEmpresa("RECA");
+        // model.setQntHoras(24);
+        // model.setValor(new BigDecimal(1500.00));
+        // model.setQntVagas(10);
+        // // c.create(model);
+        // for(ConvenioModel co : c.listarTodos()){
+        //     System.out.println(co);
+        // }
 
-        for(VeiculoModel v : vlist){
-            System.out.println(v);
-        }
+        // for(ClienteModel co : c.listarClientesPorNome("top")){
+        //     System.out.println(co);
+        // }
+
 
     }
 }

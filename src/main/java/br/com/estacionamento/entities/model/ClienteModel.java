@@ -193,7 +193,7 @@ public class ClienteModel extends Pessoa{
     @Override
     public String toString() {
         return "ClienteModel [endereco=" + endereco + ", ativo=" + ativo + ", data_cadastro=" + data_cadastro
-                + ", ticket=" + ticket + ", convenio=" + convenio + ", reservas=" + reservas + "]";
+                + ", convenio=" + convenio + "]";
     }
 
     
