@@ -12,7 +12,7 @@ public class EstacionamentoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "cnpf", length = 15)
+    @Column(name = "cnpf", length = 15, nullable = false)
     private String cnpj;
 
     @Embedded
@@ -26,7 +26,7 @@ public class EstacionamentoModel {
     // private EnderecoModel endereco;
 
     @ManyToOne
-    @JoinColumn(name = "responsavel_id")
+    @JoinColumn(name = "responsavel_id", nullable = false)
     private ResponsavelModel responsavel;
 
     @OneToMany(mappedBy = "estacionamento",cascade = CascadeType.ALL, orphanRemoval = true )

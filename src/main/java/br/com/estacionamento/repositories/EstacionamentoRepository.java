@@ -1,6 +1,9 @@
 package br.com.estacionamento.repositories;
 
 import br.com.estacionamento.entities.model.EstacionamentoModel;
+import br.com.estacionamento.entities.model.FuncionarioModel;
+import br.com.estacionamento.entities.model.ResponsavelModel;
+import br.com.estacionamento.entities.model.VagaModel;
 import br.com.estacionamento.interfaces.repositories.IEstacionamentoRepository;
 import java.util.List;
 
@@ -27,4 +30,34 @@ public class EstacionamentoRepository extends BaseDAO<EstacionamentoModel> imple
                 capacidade
         );
     }
+
+    @Override
+    public List<FuncionarioModel> ListarFuncionarioPeloId(Long id) {
+        String JPQL = "SELECT funcionario FROM FuncionarioModel funcionario WHERE funcionario.estacionamento.id = :id";
+        List<FuncionarioModel> listFuncionario = em.createQuery(JPQL,FuncionarioModel.class)
+        .setParameter("id", id)
+        .getResultList();
+        return listFuncionario;
+    }
+
+    @Override
+    public ResponsavelModel ListarResponsavelPorId(Long id) {
+        String JPQL = "SELECT estacionamento.responsavel FROM EstacionamentoModel estacionamento WHERE estacionamento.id = :id";
+        ResponsavelModel responsavel = em.createQuery(JPQL,ResponsavelModel.class)
+        .setParameter("id", id)
+        .getSingleResult();
+        return responsavel;
+    }
+
+    @Override
+    public List<VagaModel> ListarVagasPeloId(Long id) {
+        String JPQL = "SELECT vaga FROM VagaModel vaga WHERE vaga.estacionamento.id = :id";
+        List<VagaModel> listVagas = em.createQuery(JPQL,VagaModel.class)
+        .setParameter("id", id)
+        .getResultList();
+        return listVagas;
+        // return null;
+    }
+
+    
 }
