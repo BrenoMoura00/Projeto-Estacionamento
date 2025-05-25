@@ -61,4 +61,10 @@ public class ReservaRepository extends BaseDAO<ReservaModel> implements IReserva
     public List<ReservaModel> findByVeiculoId(int veiculoId) {
         return executeQuery("SELECT r FROM ReservaModel r WHERE r.veiculo.id = :veiculoId", veiculoId);
     }
+
+    @Override
+    public List<ReservaModel> listarTodos() {
+        String jpql = "SELECT r FROM ReservaModel r";
+        return em.createQuery(jpql, ReservaModel.class).getResultList();
+    }
 }

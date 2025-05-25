@@ -12,4 +12,5 @@ public interface IReservaRepository extends IDAO<ReservaModel> {
     List<ReservaModel> findByStatus(String status);
     List<ReservaModel> findByEstacionamentoId(int estacionamentoId);
     List<ReservaModel> findByVeiculoId(int veiculoId);
+    List<ReservaModel> listarTodos();
 }

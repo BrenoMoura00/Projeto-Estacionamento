@@ -44,4 +44,10 @@ public class VagaRepository extends BaseDAO<VagaModel> implements IVagaRepositor
         query.setParameter("estacionamentoId", estacionamentoId);
         return query.getSingleResult();
     }
+
+    @Override
+    public List<VagaModel> listarTodos() {
+        String jpql = "SELECT v FROM VagaModel v";
+        return em.createQuery(jpql, VagaModel.class).getResultList();
+    }
 }

@@ -15,41 +15,122 @@ public class VagaService implements IVagaService {
 
     @Override
     public String cadastrarVaga(VagaModel vaga) {
-        return null;
+        if (vaga == null) {
+            return "Vaga não pode ser nula";
+        }
+
+        if (vaga.getNumero() == null) {
+            return "Número da vaga é obrigatório";
+        }
+
+        if (vaga.getSetor() == null || vaga.getSetor().trim().isEmpty()) {
+            return "Setor é obrigatório";
+        }
+
+        if (vaga.getAndar() == null || vaga.getAndar().trim().isEmpty()) {
+            return "Andar é obrigatório";
+        }
+
+        if (vaga.getEstacionamento() == null) {
+            return "Estacionamento é obrigatório";
+        }
+
+        try {
+            vagaRepository.create(vaga);
+            return "Vaga cadastrada com sucesso!";
+        } catch (Exception e) {
+            return "Erro ao cadastrar vaga: " + e.getMessage();
+        }
     }
 
     @Override
     public VagaModel buscarVagaPorNumero(String numero) {
-        return null;
+        if (numero == null || numero.trim().isEmpty()) {
+            return null;
+        }
+        List<VagaModel> vagas = vagaRepository.findByNumero(numero);
+        return vagas.isEmpty() ? null : vagas.get(0);
     }
 
     @Override
     public List<VagaModel> buscarVagasPorTipo(String tipo) {
-        return null;
+        if (tipo == null || tipo.trim().isEmpty()) {
+            return null;
+        }
+        return vagaRepository.findByTipo(tipo);
     }
 
     @Override
     public List<VagaModel> buscarVagasDisponiveis(boolean disponivel) {
-        return null;
+        return vagaRepository.findByDisponivel(disponivel);
     }
 
     @Override
     public List<VagaModel> buscarVagasPorEstacionamento(int estacionamentoId) {
-        return null;
+        if (estacionamentoId <= 0) {
+            return null;
+        }
+        return vagaRepository.findByEstacionamentoId(estacionamentoId);
     }
 
     @Override
     public String atualizarVaga(VagaModel vaga) {
-        return null;
+        if (vaga == null) {
+            return "Vaga não pode ser nula";
+        }
+
+        if (vaga.getId() == null) {
+            return "ID da vaga é obrigatório";
+        }
+
+        if (vaga.getNumero() == null) {
+            return "Número da vaga é obrigatório";
+        }
+
+        if (vaga.getSetor() == null || vaga.getSetor().trim().isEmpty()) {
+            return "Setor é obrigatório";
+        }
+
+        if (vaga.getAndar() == null || vaga.getAndar().trim().isEmpty()) {
+            return "Andar é obrigatório";
+        }
+
+        if (vaga.getEstacionamento() == null) {
+            return "Estacionamento é obrigatório";
+        }
+
+        try {
+            vagaRepository.update(vaga);
+            return "Vaga atualizada com sucesso!";
+        } catch (Exception e) {
+            return "Erro ao atualizar vaga: " + e.getMessage();
+        }
     }
 
     @Override
     public String removerVaga(String numero, int estacionamentoId) {
-        return null;
+        if (numero == null || numero.trim().isEmpty()) {
+            return "Número da vaga não pode ser nulo";
+        }
+
+        if (estacionamentoId <= 0) {
+            return "ID do estacionamento inválido";
+        }
+
+        try {
+            VagaModel vaga = vagaRepository.findByNumeroAndEstacionamentoId(numero, estacionamentoId);
+            if (vaga == null) {
+                return "Vaga não encontrada";
+            }
+            vagaRepository.delete(vaga.getId().intValue());
+            return "Vaga removida com sucesso!";
+        } catch (Exception e) {
+            return "Erro ao remover vaga: " + e.getMessage();
+        }
     }
 
     @Override
     public List<VagaModel> listarTodasVagas() {
-        return null;
+        return vagaRepository.listarTodos();
     }
 } 

@@ -11,6 +11,7 @@ public interface IEstacionamentoRepository extends IDAO<EstacionamentoModel> {
     List<EstacionamentoModel> findByNome(String nome);
     List<EstacionamentoModel> findByCidade(String cidade);
     List<EstacionamentoModel> findByCapacidadeGreaterThan(int capacidade);
+    List<EstacionamentoModel> listarTodos();
 
     List<VagaModel> ListarVagasPeloId(Long id);
     List<FuncionarioModel> ListarFuncionarioPeloId(Long id);

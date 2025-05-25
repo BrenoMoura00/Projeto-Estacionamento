@@ -14,70 +14,139 @@ public class EstacionamentoService implements IEstacionamentoService {
 
     private EstacionamentoRepository estacionamentoRepository;
 
+    public EstacionamentoService() {
+        this.estacionamentoRepository = new EstacionamentoRepository();
+    }
+
     @Override
     public String cadastrarEstacionamento(EstacionamentoModel estacionamento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cadastrarEstacionamento'");
+        if (estacionamento == null) {
+            return "Estacionamento não pode ser nulo";
+        }
+
+        if (estacionamento.getTelefone() == null || estacionamento.getTelefone().trim().isEmpty()) {
+            return "CNPJ é obrigatório";
+        }
+
+        if (estacionamento.getEndereco() == null) {
+            return "Endereço é obrigatório";
+        }
+
+        if (estacionamento.getResponsavel() == null) {
+            return "Responsável é obrigatório";
+        }
+
+        try {
+            estacionamentoRepository.create(estacionamento);
+            return "Estacionamento cadastrado com sucesso!";
+        } catch (Exception e) {
+            return "Erro ao cadastrar estacionamento: " + e.getMessage();
+        }
     }
 
     @Override
     public EstacionamentoModel buscarEstacionamentoPorId(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarEstacionamentoPorId'");
+        if (id == null) {
+            return null;
+        }
+        return estacionamentoRepository.read(id.intValue());
     }
 
     @Override
     public List<EstacionamentoModel> buscarEstacionamentosPorNome(String nome) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarEstacionamentosPorNome'");
+        if (nome == null || nome.trim().isEmpty()) {
+            return null;
+        }
+        return estacionamentoRepository.findByNome(nome);
     }
 
     @Override
     public List<EstacionamentoModel> buscarEstacionamentosPorCidade(String cidade) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarEstacionamentosPorCidade'");
+        if (cidade == null || cidade.trim().isEmpty()) {
+            return null;
+        }
+        return estacionamentoRepository.findByCidade(cidade);
     }
 
     @Override
     public List<EstacionamentoModel> buscarEstacionamentosPorCapacidade(int capacidade) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarEstacionamentosPorCapacidade'");
+        if (capacidade <= 0) {
+            return null;
+        }
+        return estacionamentoRepository.findByCapacidadeGreaterThan(capacidade);
     }
 
     @Override
     public List<FuncionarioModel> listarFuncionariosPorEstacionamento(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarFuncionariosPorEstacionamento'");
+        if (id == null) {
+            return null;
+        }
+        return estacionamentoRepository.ListarFuncionarioPeloId(id);
     }
 
     @Override
     public ResponsavelModel buscarResponsavelPorEstacionamento(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarResponsavelPorEstacionamento'");
+        if (id == null) {
+            return null;
+        }
+        return estacionamentoRepository.ListarResponsavelPorId(id);
     }
 
     @Override
     public List<VagaModel> listarVagasPorEstacionamento(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarVagasPorEstacionamento'");
+        if (id == null) {
+            return null;
+        }
+        return estacionamentoRepository.ListarVagasPeloId(id);
     }
 
     @Override
     public String atualizarEstacionamento(EstacionamentoModel estacionamento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizarEstacionamento'");
+        if (estacionamento == null) {
+            return "Estacionamento não pode ser nulo";
+        }
+
+        if (estacionamento.getId() == null) {
+            return "ID do estacionamento é obrigatório";
+        }
+
+        if (estacionamento.getTelefone() == null || estacionamento.getTelefone().trim().isEmpty()) {
+            return "CNPJ é obrigatório";
+        }
+
+        if (estacionamento.getEndereco() == null) {
+            return "Endereço é obrigatório";
+        }
+
+        if (estacionamento.getResponsavel() == null) {
+            return "Responsável é obrigatório";
+        }
+
+        try {
+            estacionamentoRepository.update(estacionamento);
+            return "Estacionamento atualizado com sucesso!";
+        } catch (Exception e) {
+            return "Erro ao atualizar estacionamento: " + e.getMessage();
+        }
     }
 
     @Override
     public String removerEstacionamento(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removerEstacionamento'");
+        if (id == null) {
+            return "ID do estacionamento não pode ser nulo";
+        }
+
+        try {
+            estacionamentoRepository.delete(id.intValue());
+            return "Estacionamento removido com sucesso!";
+        } catch (Exception e) {
+            return "Erro ao remover estacionamento: " + e.getMessage();
+        }
     }
 
     @Override
     public List<EstacionamentoModel> listarTodosEstacionamentos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarTodosEstacionamentos'");
+        return estacionamentoRepository.listarTodos();
     }
     // Cadastrar um novo estacionamento
     // Listar estacionemtos

@@ -9,4 +9,5 @@ public interface IVagaRepository extends IDAO<VagaModel> {
     List<VagaModel> findByDisponivel(boolean disponivel);
     List<VagaModel> findByEstacionamentoId(int estacionamentoId);
     VagaModel findByNumeroAndEstacionamentoId(String numero, int estacionamentoId);
+    List<VagaModel> listarTodos();
 }

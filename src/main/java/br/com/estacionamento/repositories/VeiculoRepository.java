@@ -18,28 +18,28 @@ public class VeiculoRepository extends BaseDAO<VeiculoModel> implements IVeiculo
             v.cor = :cor,
             v.marca = :marca,
             v.ano = :ano,
-            v.cliente = :cliente
-         v.placa = :placa
+            v.cliente = :cliente,
+            v.placa = :placa
          WHERE 
          v.id = :id
-    """;
+        """;
 
-    em.getTransaction().begin();
-    em.createQuery(jpql)
-      .setParameter("modelo", veiculo.getModelo())
-      .setParameter("cor", veiculo.getCor())
-      .setParameter("marca", veiculo.getMarca())
-      .setParameter("ano", veiculo.getAno())
-      .setParameter("cliente", veiculo.getCliente())
-      .setParameter("placa", veiculo.getPlaca())
-      .setParameter("id", veiculo.getId())
-      .executeUpdate();
-    em.getTransaction().commit();
+        em.getTransaction().begin();
+        em.createQuery(jpql)
+          .setParameter("modelo", veiculo.getModelo())
+          .setParameter("cor", veiculo.getCor())
+          .setParameter("marca", veiculo.getMarca())
+          .setParameter("ano", veiculo.getAno())
+          .setParameter("cliente", veiculo.getCliente())
+          .setParameter("placa", veiculo.getPlaca())
+          .setParameter("id", veiculo.getId())
+          .executeUpdate();
+        em.getTransaction().commit();
     }
 
     @Override
     public VeiculoModel buscarPorPlaca(String placa) {
-        String jpql = "SELECT veiculo FROM VeiculoModel veiculo WHERE veiculo = :placa";
+        String jpql = "SELECT v FROM VeiculoModel v WHERE v.placa = :placa";
         List<VeiculoModel> resultado = em.createQuery(jpql, VeiculoModel.class)
                                       .setParameter("placa", placa)
                                       .getResultList();
@@ -48,16 +48,18 @@ public class VeiculoRepository extends BaseDAO<VeiculoModel> implements IVeiculo
 
     @Override
     public List<VeiculoModel> listarTodos() {
-        String jpql = "SELECT veiculo FROM VeiculoModel veiculo";
-        List<VeiculoModel> listVeiculo = em.createQuery(jpql,VeiculoModel.class)
-        .getResultList();
-        return listVeiculo;
+        String jpql = "SELECT v FROM VeiculoModel v";
+        return em.createQuery(jpql, VeiculoModel.class).getResultList();
     }
 
     @Override
     public void remover(String placa) {
-        // TODO Auto-generated method stub
-        
+        VeiculoModel veiculo = buscarPorPlaca(placa);
+        if (veiculo != null) {
+            em.getTransaction().begin();
+            em.remove(veiculo);
+            em.getTransaction().commit();
+        }
     }
 
     // @Override

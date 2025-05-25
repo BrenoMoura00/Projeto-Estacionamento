@@ -32,6 +32,12 @@ public class EstacionamentoRepository extends BaseDAO<EstacionamentoModel> imple
     }
 
     @Override
+    public List<EstacionamentoModel> listarTodos() {
+        String jpql = "SELECT e FROM EstacionamentoModel e";
+        return em.createQuery(jpql, EstacionamentoModel.class).getResultList();
+    }
+
+    @Override
     public List<FuncionarioModel> ListarFuncionarioPeloId(Long id) {
         String JPQL = "SELECT funcionario FROM FuncionarioModel funcionario WHERE funcionario.estacionamento.id = :id";
         List<FuncionarioModel> listFuncionario = em.createQuery(JPQL,FuncionarioModel.class)
