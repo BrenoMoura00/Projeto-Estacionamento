@@ -111,4 +111,9 @@ public class ClienteRepository extends BaseDAO<ClienteModel> implements ICliente
         
         return listReservas;
     }
+
+    public List<ClienteModel> listarTodos() {
+        String jpql = "SELECT c FROM ClienteModel c";
+        return em.createQuery(jpql, ClienteModel.class).getResultList();
+    }
 }

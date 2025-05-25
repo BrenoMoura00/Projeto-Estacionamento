@@ -43,4 +43,16 @@ public class FuncionarioRepository extends BaseDAO<FuncionarioModel> implements 
                 .setParameter("enderecoId", enderecoId)
                 .getResultList();
     }
+
+    public FuncionarioModel findByCpf(String cpf) {
+        TypedQuery<FuncionarioModel> query = em.createQuery(
+                "SELECT f FROM FuncionarioModel f WHERE f.cpf = :cpf", FuncionarioModel.class);
+        query.setParameter("cpf", cpf);
+        return query.getResultStream().findFirst().orElse(null);
+    }
+
+    public List<FuncionarioModel> findAll() {
+        String jpql = "SELECT f FROM FuncionarioModel f";
+        return em.createQuery(jpql, FuncionarioModel.class).getResultList();
+    }
 }
