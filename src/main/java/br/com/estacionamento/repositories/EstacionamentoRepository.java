@@ -65,5 +65,26 @@ public class EstacionamentoRepository extends BaseDAO<EstacionamentoModel> imple
         // return null;
     }
 
-    
+    /* ISSO É SO PRA RODAR NO PC DE RICARDON */
+    public boolean criarEstacionamentoSeCnpjNaoExistir(String cnpj, EstacionamentoModel novoEstacionamento) {
+        String jpql = "SELECT COUNT(e) FROM EstacionamentoModel e WHERE e.cnpj = :cnpj";
+        Long count = em.createQuery(jpql, Long.class)
+                      .setParameter("cnpj", cnpj)
+                      .getSingleResult();
+
+        if (count != null && count == 0) {
+            try {
+                em.getTransaction().begin();
+                em.persist(novoEstacionamento);
+                em.getTransaction().commit();
+                return true;
+            } catch (Exception e) {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                return false;
+            }
+        }
+        return false;
+    }  
 }

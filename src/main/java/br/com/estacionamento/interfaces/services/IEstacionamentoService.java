@@ -18,4 +18,5 @@ public interface IEstacionamentoService {
     String atualizarEstacionamento(EstacionamentoModel estacionamento);
     String removerEstacionamento(Long id);
     List<EstacionamentoModel> listarTodosEstacionamentos();
+    String criarEstacionamentoSeCnpjNaoExistir(EstacionamentoModel novoEstacionamento);
 } 

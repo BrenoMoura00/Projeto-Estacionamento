@@ -148,7 +148,33 @@ public class EstacionamentoService implements IEstacionamentoService {
     public List<EstacionamentoModel> listarTodosEstacionamentos() {
         return estacionamentoRepository.listarTodos();
     }
-    // Cadastrar um novo estacionamento
-    // Listar estacionemtos
-    // Puxar Estacionamento especifico e guardar na memoria
+
+    public String criarEstacionamentoSeCnpjNaoExistir(EstacionamentoModel novoEstacionamento) {
+        if (novoEstacionamento == null) {
+            return "Estacionamento não pode ser nulo";
+        }
+
+        if (novoEstacionamento.getTelefone() == null || novoEstacionamento.getTelefone().trim().isEmpty()) {
+            return "CNPJ é obrigatório";
+        }
+
+        if (novoEstacionamento.getEndereco() == null) {
+            return "Endereço é obrigatório";
+        }
+
+        if (novoEstacionamento.getResponsavel() == null) {
+            return "Responsável é obrigatório";
+        }
+
+        try {
+            boolean criado = estacionamentoRepository.criarEstacionamentoSeCnpjNaoExistir(novoEstacionamento.getTelefone(), novoEstacionamento);
+            if (criado) {
+                return "Estacionamento criado com sucesso!";
+            } else {
+                return "Já existe um estacionamento com este CNPJ";
+            }
+        } catch (Exception e) {
+            return "Erro ao criar estacionamento: " + e.getMessage();
+        }
+    }
 }

@@ -81,11 +81,11 @@ public class EstacionamentoModel {
     //     this.nome = nome;
     // }
 
-    public String getTelefone() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setTelefone(String cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
