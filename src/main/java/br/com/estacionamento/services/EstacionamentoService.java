@@ -24,7 +24,7 @@ public class EstacionamentoService implements IEstacionamentoService {
             return "Estacionamento não pode ser nulo";
         }
 
-        if (estacionamento.getTelefone() == null || estacionamento.getTelefone().trim().isEmpty()) {
+        if (estacionamento.getCnpj() == null || estacionamento.getCnpj().trim().isEmpty()) {
             return "CNPJ é obrigatório";
         }
 
@@ -110,7 +110,7 @@ public class EstacionamentoService implements IEstacionamentoService {
             return "ID do estacionamento é obrigatório";
         }
 
-        if (estacionamento.getTelefone() == null || estacionamento.getTelefone().trim().isEmpty()) {
+        if (estacionamento.getCnpj() == null || estacionamento.getCnpj().trim().isEmpty()) {
             return "CNPJ é obrigatório";
         }
 
@@ -154,7 +154,7 @@ public class EstacionamentoService implements IEstacionamentoService {
             return "Estacionamento não pode ser nulo";
         }
 
-        if (novoEstacionamento.getTelefone() == null || novoEstacionamento.getTelefone().trim().isEmpty()) {
+        if (novoEstacionamento.getCnpj() == null || novoEstacionamento.getCnpj().trim().isEmpty()) {
             return "CNPJ é obrigatório";
         }
 
@@ -167,7 +167,7 @@ public class EstacionamentoService implements IEstacionamentoService {
         }
 
         try {
-            boolean criado = estacionamentoRepository.criarEstacionamentoSeCnpjNaoExistir(novoEstacionamento.getTelefone(), novoEstacionamento);
+            boolean criado = estacionamentoRepository.criarEstacionamentoSeCnpjNaoExistir(novoEstacionamento.getCnpj(), novoEstacionamento);
             if (criado) {
                 return "Estacionamento criado com sucesso!";
             } else {
