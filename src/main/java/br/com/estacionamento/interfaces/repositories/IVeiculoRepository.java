@@ -5,7 +5,7 @@ import br.com.estacionamento.entities.model.VeiculoModel;
 import java.util.List;
 
 public interface IVeiculoRepository  extends IDAO<VeiculoModel>{
-    void salvar(VeiculoModel veiculo);
+    // void salvar(VeiculoModel veiculo);
     void remover(String placa);
     void atualizar(VeiculoModel veiculo);
     List<VeiculoModel> listarTodos();
