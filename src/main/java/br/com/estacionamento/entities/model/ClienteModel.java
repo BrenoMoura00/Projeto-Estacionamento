@@ -46,11 +46,14 @@ public class ClienteModel extends Pessoa{
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReservaModel> reservas = new ArrayList<>();
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TelefoneClienteModel> telefone = new ArrayList<>();
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VeiculoModel> veiculos = new ArrayList<>();
 
-   
+   @OneToMany
+
     
     /*public ClienteModel(String nome, String cpf, String telefone, LocalDate data_cadastro) {
         this.nome = nome;

@@ -4,6 +4,8 @@ import br.com.estacionamento.entities.Pessoa;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "funcionarios")
@@ -25,6 +27,9 @@ public class FuncionarioModel extends Pessoa {
 
     @Column(name = "data_admissao", nullable = false)
     private LocalDate dataAdmissao;
+
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TelefoneFuncionarioModel> telefone = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "estacionamento_id")

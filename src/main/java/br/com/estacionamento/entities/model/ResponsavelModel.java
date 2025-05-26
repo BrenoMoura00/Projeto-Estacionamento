@@ -1,8 +1,10 @@
 package br.com.estacionamento.entities.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.estacionamento.entities.Pessoa;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -16,6 +18,8 @@ public class ResponsavelModel extends Pessoa {
     @OneToMany(mappedBy = "responsavel")
     private List<EstacionamentoModel> estacionamento;
 
+    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TelefoneResponsavelModel> telefone = new ArrayList<>();
     
     public ResponsavelModel(){
         

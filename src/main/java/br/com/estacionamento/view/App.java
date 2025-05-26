@@ -12,30 +12,24 @@ package br.com.estacionamento.view;
 // import jakarta.persistence.EntityManagerFactory;
 // import jakarta.persistence.Persistence;
 import br.com.estacionamento.services.*;
-   
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
 public class App {
-    private  ReservaService reservaService = new ReservaService();
-    private  TicketService ticketService = new TicketService();
-    private  ClienteService clienteService = new ClienteService();
-    private  ConvenioService convenioService = new ConvenioService();
-    private  FuncionarioService funcionarioService = new FuncionarioService();
-    private  ResponsavelService responsavelService = new ResponsavelService();
-    private  VagaService vagaService = new VagaService();
-    private  VeiculoService veiculoService = new VeiculoService();
-    private  EstacionamentoService estacionamentoService = new EstacionamentoService();
 
     public static void main(String[] args) {
         
         
-        // EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("estacionamento");
-        // EntityManager em =  entityManagerFactory.createEntityManager();
-        // try{
-        //     em.getTransaction().begin();
-        //     em.getTransaction().commit();
-        //     System.out.println("TESTE DE TRANSAÇÃO BEM SUCEDIDA");
-        // }catch(Exception e){
-        //     e.getMessage();
-        // }
+         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("estacionamento");
+         EntityManager em =  entityManagerFactory.createEntityManager();
+         try{
+             em.getTransaction().begin();
+             em.getTransaction().commit();
+             System.out.println("TESTE DE TRANSAÇÃO BEM SUCEDIDA");
+         }catch(Exception e){
+             e.getMessage();
+         }
 
         // ConvenioRepository c = new ConvenioRepository();
         // ConvenioModel model = new ConvenioModel();
